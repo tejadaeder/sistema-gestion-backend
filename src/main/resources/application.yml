@@ -1,0 +1,75 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sistema-gestion-backend
+
+  # =============================================
+  # CONFIGURACIÓN DE BASE DE DATOS MySQL
+  # =============================================
+  datasource:
+    url: jdbc:mysql://localhost:3306/gestion_conocimiento_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456        
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: update      # "validate" en producción; usar "update" solo en desarrollo
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  # =============================================
+  # CONFIGURACIÓN DE APACHE KAFKA
+  # =============================================
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # El valor se serializa a JSON mediante StringSerializer + Jackson en el servicio
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all               # Garantía de escritura en todas las réplicas
+      retries: 3
+
+    consumer:
+      group-id: gestion-conocimiento-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false   # Commit manual para mayor control
+
+    listener:
+      ack-mode: MANUAL_IMMEDIATE   # El consumer confirma explícitamente cada mensaje
+
+# =============================================
+# CONFIGURACIÓN CORS GLOBAL
+# Se permite el origen de Angular (localhost:4200)
+# =============================================
+cors:
+  allowed-origins: "http://localhost:4200"
+
+# =============================================
+# NOMBRES DE TOPICS KAFKA
+# =============================================
+app:
+  kafka:
+    topic:
+      git-webhook: eventos-git-webhook
+
+# =============================================
+# LOGGING
+# =============================================
+logging:
+  level:
+    com.universidad.gestionconocimiento: DEBUG
+    org.springframework.kafka: INFO
+    org.hibernate.SQL: DEBUG
