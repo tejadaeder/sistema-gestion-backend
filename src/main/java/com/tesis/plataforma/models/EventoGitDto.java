@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EventoGitDto {
     private Long idLeccion;      // ID de la lección a enlazar (#3 en tu prueba)
-    private String commitHash;   // Hash largo o corto (ej: "a1b2c3d4e5f67890")
+    private String commitHash;
     private String commitMensaje;
     private String autor;
 }
