@@ -12,4 +12,4 @@
 * **Categoría:** Gestión de Dependencias y Construcción de Proyectos Backend[cite: 2]
 * **Problema:** Excepción java.lang.ClassNotFoundException y NoSuchMethodError por incompatibilidad entre la versión de Spring Boot y librerías externas en pom.xml[cite: 2, 3].
 * **Solución aplicada:** Se estandarizaron las versiones dentro del bloque <dependencyManagement> usando el BOM de Spring Boot y se forzó la actualización del repositorio local con `mvn clean install -U`.
-* **Validación:** Empaquetado exitoso del archivo JAR ejecutable sin colisiones de classpath[cite: 2, 3].
+* **Validación:**  Empaquetado exitoso del archivo JAR ejecutable sin colisiones de classpath[cite: 2, 3].
