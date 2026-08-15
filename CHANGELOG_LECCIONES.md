@@ -20,3 +20,10 @@
 * **Problema:** Error al iniciar el servidor de desarrollo local mediante `ng serve`: "The Angular CLI requires a minimum Node.js version of v18.13.0", bloqueando el renderizado de la interfaz interactiva.
 * **Solución aplicada:** Se instaló Node Version Manager (NVM), se seleccionó la versión compatible mediante `nvm use 18.18.0`, se eliminó el directorio node_modules y se ejecutó `npm install` para regenerar el árbol de dependencias.
 * **Validación:** Compilación y despliegue exitoso del servidor de desarrollo en http://localhost:4200 sin advertencias de entorno.
+
+## [Lección #4] - Communications link failure en conexión JDBC de Spring Data con MySQL
+* **Fecha:** 2026-08-14
+* **Categoría:** Persistencia y Bases de Datos Relacionales
+* **Problema:** Fallo al iniciar el backend por error `Cannot obtain JDBC Connection / Communications link failure`, impidiendo la conexión a la base de datos MySQL por parámetros de SSL y zona horaria no definidos.
+* **Solución aplicada:** Se corrigió la URL JDBC en `application.properties` añadiendo `?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true`, se validaron las credenciales de acceso y se verificó el puerto 3306.
+* **Validación:** Arranque exitoso del contexto de Spring Boot y sincronización de entidades JPA.
