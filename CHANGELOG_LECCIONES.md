@@ -6,3 +6,10 @@
 * **Problema:** Al ejecutar scripts o comandos en consola, el sistema retorna "javac no se reconoce como comando interno o externo".
 * **Solución aplicada:** Se configuró la variable del sistema JAVA_HOME apuntando al JDK 17 y se agregó %JAVA_HOME%\bin a la variable PATH.
 * **Validación:** Comprobado en terminal mediante `java -version` y `javac -version`.
+
+## [Lección #2] - Conflicto de versiones de dependencias en Maven/Gradle
+* **Fecha:** 2026-08-14
+* **Categoría:** Gestión de Dependencias y Construcción de Proyectos Backend[cite: 2]
+* **Problema:** Excepción java.lang.ClassNotFoundException y NoSuchMethodError por incompatibilidad entre la versión de Spring Boot y librerías externas en pom.xml[cite: 2, 3].
+* **Solución aplicada:** Se estandarizaron las versiones dentro del bloque <dependencyManagement> usando el BOM de Spring Boot y se forzó la actualización del repositorio local con `mvn clean install -U`.
+* **Validación:** Empaquetado exitoso del archivo JAR ejecutable sin colisiones de classpath[cite: 2, 3].
