@@ -27,3 +27,10 @@
 * **Problema:** Fallo al iniciar el backend por error `Cannot obtain JDBC Connection / Communications link failure`, impidiendo la conexión a la base de datos MySQL por parámetros de SSL y zona horaria no definidos.
 * **Solución aplicada:** Se corrigió la URL JDBC en `application.properties` añadiendo `?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true`, se validaron las credenciales de acceso y se verificó el puerto 3306.
 * **Validación:** Arranque exitoso del contexto de Spring Boot y sincronización de entidades JPA.
+
+## [Lección #5] - NullPointerException al inyectar dependencias y renderizado asíncrono en Angular
+* **Fecha:** 2026-08-14
+* **Categoría:** Arquitectura de Componentes e Inyección de Dependencias
+* **Problema:** Excepciones `NullPointerException` en el backend por servicios no inyectados en runtime y errores `ExpressionChangedAfterItHasBeenCheckedError` en el frontend al renderizar flujos asíncronos no inicializados.
+* **Solución aplicada:** Se implementó inyección por constructor mediante `@RequiredArgsConstructor` en Spring Boot; en Angular se aplicó el operador de navegación segura (`?.`) en plantillas HTML y gestión de streams con el pipe `async`.
+* **Validación:** Renderizado estable en vistas de Angular sin ciclos de detección alterados y llamadas a servicios backend con dependencias resueltas.
