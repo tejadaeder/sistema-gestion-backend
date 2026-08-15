@@ -34,3 +34,9 @@
 * **Problema:** Excepciones `NullPointerException` en el backend por servicios no inyectados en runtime y errores `ExpressionChangedAfterItHasBeenCheckedError` en el frontend al renderizar flujos asíncronos no inicializados.
 * **Solución aplicada:** Se implementó inyección por constructor mediante `@RequiredArgsConstructor` en Spring Boot; en Angular se aplicó el operador de navegación segura (`?.`) en plantillas HTML y gestión de streams con el pipe `async`.
 * **Validación:** Renderizado estable en vistas de Angular sin ciclos de detección alterados y llamadas a servicios backend con dependencias resueltas.
+## [Lección #6] - Conflictos de fusión (Merge Conflict) al sincronizar ramas concurrentes en Git
+* **Fecha:** 2026-08-14
+* **Categoría:** Control de Versiones y Trabajo Colaborativo en Git
+* **Problema:** Rechazo en operaciones `git push` o detención durante `git pull origin main` por colisión de cambios concurrentes en las mismas líneas de archivos compartidos.
+* **Solución aplicada:** Se identificaron y editaron los archivos en conflicto eliminando los delimitadores (`<<<<<<<`, `=======`, `>>>>>>>`), se consensuaron los cambios válidos, se prepararon con `git add` y se completó la fusión mediante `git commit -m "fix: resolucion de conflicto de merge"`.
+* **Validación:** Árbol de commits sincronizado y validación de compilación limpia en la rama integrada.
